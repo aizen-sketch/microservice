@@ -1,0 +1,33 @@
+package com.example.MenuService.Controller;
+
+]
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.MenuService.Service.MenuService;
+import com.example.MenuServiceDto.MenuItemDTO;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/menu")
+public class MenuController {
+
+    @Autowired
+    private MenuService service;
+
+    @PostMapping
+    public MenuItemDTO addMenuItem(@RequestBody MenuItemDTO dto) {
+        return service.addMenuItem(dto);
+    }
+
+    @GetMapping("/{id}")
+    public MenuItemDTO getById(@PathVariable Long id) {
+        return service.getMenuItemById(id);
+    }
+
+    @GetMapping
+    public List<MenuItemDTO> getAll() {
+        return service.getAllMenuItems();
+    }
+}

@@ -1,0 +1,29 @@
+# Unique app name for Eureka registration
+spring.application.name=menu-service
+
+# Run on different port than gateway or Eureka
+server.port=8082
+
+# Eureka Server details
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+# Use IP instead of hostname
+eureka.instance.prefer-ip-address=true
+
+# Actuator health for Eureka checks
+management.endpoints.web.exposure.include=health,info
+eureka.client.healthcheck.enabled=true
+
+# H2 DB config
+spring.datasource.url=jdbc:h2:mem:menu_db
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+# Enable H2 console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console

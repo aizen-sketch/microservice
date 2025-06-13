@@ -1,0 +1,28 @@
+package com.example.MenuService.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
+
+import com.example.MenuServiceDto.MenuItemDTO;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+
+public class MenuClientService {
+	 private static final String MENU_SERVICE_URL = "http://menu-service/menu/";
+	   @Autowired
+	    private RestTemplate restTemplate;
+	@Retry(name = "menu-service", fallbackMethod = "getMenuItemPriceFallback")
+    @CircuitBreaker(name = "menu-service", fallbackMethod = "getMenuItemPriceFallback")
+    public double getMenuPrice(Long menuItemId) {
+//    	throw new RuntimeException("Service call failed" );
+        String url = MENU_SERVICE_URL + menuItemId;
+        MenuItemDTO menuItem = restTemplate.getForObject(url, MenuItemDTO.class);
+        return menuItem != null ? menuItem.getPrice() : 0.0;
+    }
+
+    public double getMenuItemPriceFallback(Long menuItemId, Throwable t) {
+        System.out.println("Fallback triggered for menu item ID " + menuItemId + ", reason: " + t.getMessage());
+        return 0.001;
+    }
+}

@@ -1,0 +1,12 @@
+package com.example.TableService.Service;
+
+
+
+
+import java.util.List;
+
+public interface RestaurantTableService {
+    RestaurantTableDTO addTable(RestaurantTableDTO dto);
+    RestaurantTableDTO getTableById(Long id);
+    List<RestaurantTableDTO> getAllTables();
+}
