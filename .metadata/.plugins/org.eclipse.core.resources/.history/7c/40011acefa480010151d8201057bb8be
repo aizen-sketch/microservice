@@ -1,0 +1,43 @@
+package com.example.OrderService.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.example.OrderService.Dto.OrderDTO;
+import com.example.OrderService.Dto.ResponseOrderDto;
+import com.example.OrderService.Service.OrderService;
+import java.util.List;
+
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
+
+    @PostMapping
+    public ResponseOrderDto createOrder(@RequestBody OrderDTO dto) {
+        return orderService.createOrder(dto);
+    }
+
+    @GetMapping("/amount/table/{tableId}")
+    public double getAmountForTable(@PathVariable Long tableId) {
+        return orderService.getAmountForTable(tableId);
+    }
+    
+    @GetMapping("/getOrder/{orderId}")
+    public ResponseOrderDto getOrderById(@PathVariable Long OrderId) {
+    	
+        return orderService.findOrder(OrderId);
+    }
+    
+    @GetMapping("/amount/order/{orderId}")
+    public double getAmountForOrder(@PathVariable Long orderId) {
+        return orderService.getAmountForOrder(orderId);
+    }
+
+    @GetMapping("/all")
+    public List<OrderDTO> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+}
+

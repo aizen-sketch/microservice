@@ -2,13 +2,13 @@ package com.example.OrderService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import com.example.OrderService.Dto.MenuItemDTO;
 import com.example.OrderService.Dto.OrderDTO;
+import com.example.OrderService.Dto.ResponseOrderDto;
 import com.example.OrderService.Repository.OrderRepository;
 import com.example.OrderService.entity.OrderEntity;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,20 +21,45 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     private MenuClientService menuClientService;
-    @Autowired
-    private RestTemplate restTemplate;
-
-    private static final String MENU_SERVICE_URL = "http://menu-service/menu/";
     
     @Override
-    public OrderDTO createOrder(OrderDTO dto) {
+    public ResponseOrderDto createOrder(OrderDTO dto) {
         OrderEntity order = new OrderEntity();
         order.setTableId(dto.getTableId());
         order.setMenuItemIds(dto.getMenuItemIds());
         order.setStatus("PLACED");
+        ResponseOrderDto respDto =new ResponseOrderDto();
         order = orderRepository.save(order);
         dto.setId(order.getId());
-        return dto;
+        respDto.setId(order.getId());
+        respDto.setOrderTime(LocalDateTime.now());
+        respDto.setStatus(order.getStatus());
+        respDto.setTableId(order.getTableId());
+        List<MenuItemDTO> menuitemList = new ArrayList<>();
+        for(Long id:order.getMenuItemIds()) {
+        	MenuItemDTO item = menuClientService.getMenuItemById(id);
+        	menuitemList.add(item);
+        }
+        respDto.setMenuItems(menuitemList);
+        respDto.setTotalBillAmount(getAmountForTable(order.getTableId()));
+        return respDto;
+    }
+    @Override
+    public ResponseOrderDto findOrder(Long orderId) {
+    	OrderEntity order = orderRepository.findById(orderId).orElse(null);
+    	ResponseOrderDto respDto = new ResponseOrderDto();
+    	respDto.setId(order.getId());
+    	respDto.setOrderTime(order.getOrderTime());
+        respDto.setStatus(order.getStatus());
+        respDto.setTableId(order.getTableId());
+        List<MenuItemDTO> menuitemList = new ArrayList<>();
+        for(Long id:order.getMenuItemIds()) {
+        	MenuItemDTO item = menuClientService.getMenuItemById(id);
+        	menuitemList.add(item);
+        }
+        respDto.setMenuItems(menuitemList);
+        respDto.setTotalBillAmount(getAmountForTable(order.getTableId()));
+    	return respDto;
     }
 
     @Override

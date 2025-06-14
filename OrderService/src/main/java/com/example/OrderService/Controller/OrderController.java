@@ -3,6 +3,7 @@ package com.example.OrderService.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.OrderService.Dto.OrderDTO;
+import com.example.OrderService.Dto.ResponseOrderDto;
 import com.example.OrderService.Service.OrderService;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public OrderDTO createOrder(@RequestBody OrderDTO dto) {
+    public ResponseOrderDto createOrder(@RequestBody OrderDTO dto) {
         return orderService.createOrder(dto);
     }
 
@@ -22,7 +23,13 @@ public class OrderController {
     public double getAmountForTable(@PathVariable Long tableId) {
         return orderService.getAmountForTable(tableId);
     }
-
+    
+    @GetMapping("/getOrder/{orderId}")
+    public ResponseOrderDto getOrderById(@PathVariable Long orderId) {
+    	
+        return orderService.findOrder(orderId);
+    }
+    
     @GetMapping("/amount/order/{orderId}")
     public double getAmountForOrder(@PathVariable Long orderId) {
         return orderService.getAmountForOrder(orderId);

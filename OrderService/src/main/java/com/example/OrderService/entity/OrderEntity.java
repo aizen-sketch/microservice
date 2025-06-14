@@ -1,6 +1,8 @@
 package com.example.OrderService.entity;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -15,7 +17,17 @@ public class OrderEntity {
     private List<Long> menuItemIds;
 
     private String status; // e.g., "PLACED", "COMPLETED"
-
+    
+    private LocalDateTime orderTime;
+    
+    public LocalDateTime getOrderTime() {
+		return orderTime;
+	}
+    
+    public void setOrderTime() {
+		 this.orderTime=LocalDateTime.now();
+	}
+    
 	public Long getId() {
 		return id;
 	}
@@ -54,6 +66,7 @@ public class OrderEntity {
 		this.tableId = tableId;
 		this.menuItemIds = menuItemIds;
 		this.status = status;
+		this.orderTime=LocalDateTime.now();
 	}
 
 	public OrderEntity() {
