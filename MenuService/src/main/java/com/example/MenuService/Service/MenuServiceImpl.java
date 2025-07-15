@@ -2,9 +2,11 @@ package com.example.MenuService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.MenuService.Dto.MenuItemDTO;
 import com.example.MenuService.Entity.MenuItem;
 import com.example.MenuService.Repository.MenuRepository;
-import com.example.MenuServiceDto.MenuItemDTO;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

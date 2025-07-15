@@ -2,7 +2,7 @@ package com.example.MenuService.Service;
 
 import java.util.List;
 
-import com.example.MenuServiceDto.MenuItemDTO;
+import com.example.MenuService.Dto.MenuItemDTO;
 
 public interface MenuService {
 

@@ -6,9 +6,13 @@
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="com.example.OrderService.entity.OrderEntity"/>
-    <fullyQualifiedTypeName name="com.example.OrderService.Dto.MenuItemDTO"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.client.loadbalancer.LoadBalanced"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.example.OrderService.Dto.ResponseOrderDto"/>
+    <fullyQualifiedTypeName name="java.awt.MenuItem"/>
+    <fullyQualifiedTypeName name="com.example.OrderService.Dto.MenuItemDTO"/>
+    <fullyQualifiedTypeName name="com.example.OrderService.Dto.OrderDTO"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 </qualifiedTypeNameHistroy>

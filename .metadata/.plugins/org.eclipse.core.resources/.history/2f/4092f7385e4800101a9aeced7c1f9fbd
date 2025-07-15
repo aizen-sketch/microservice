@@ -1,5 +1,0 @@
-package com.example.OrderService.Dto;
-
-public class ResponseDto {
-
-}
