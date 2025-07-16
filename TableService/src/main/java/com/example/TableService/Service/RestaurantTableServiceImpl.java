@@ -1,6 +1,7 @@
 package com.example.TableService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.TableService.Dto.RestaurantTableDTO;
@@ -27,8 +28,9 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
     }
 
     @Override
-    public RestaurantTableDTO getTableById(Long id) {
-        RestaurantTable table = repository.findById(id)
+    @Cacheable(value = "tables", key = "#tableId")
+    public RestaurantTableDTO getTableById(Long tableId) {
+        RestaurantTable table = repository.findById(tableId)
                 .orElseThrow(() -> new RuntimeException("Table not found"));
         return convertToDTO(table);
     }

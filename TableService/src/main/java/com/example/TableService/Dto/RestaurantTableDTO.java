@@ -1,8 +1,9 @@
 package com.example.TableService.Dto;
 
+import java.io.Serializable;
 
-public class RestaurantTableDTO {
-
+public class RestaurantTableDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
     private Long id;
     private int tableNumber;
     private int capacity;
