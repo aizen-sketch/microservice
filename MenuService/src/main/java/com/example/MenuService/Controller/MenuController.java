@@ -25,6 +25,7 @@ public class MenuController {
     @PostMapping
     public ResponseEntity<String> addMenu(@RequestBody MenuItemDTO menu) {
         // Save to DB (optional)
+    	service.addMenuItem(menu);
         menuProducer.sendMenuData(menu);
         return ResponseEntity.ok("Menu sent to Kafka");
     }

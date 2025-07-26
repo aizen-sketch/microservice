@@ -9,23 +9,23 @@ import com.example.TableService.Service.RestaurantTableService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tables")
+@RequestMapping("/")
 public class RestaurantTableController {
 
     @Autowired
     private RestaurantTableService tableService;
 
-    @PostMapping
+    @PostMapping("/tables")
     public RestaurantTableDTO addTable(@RequestBody RestaurantTableDTO dto) {
         return tableService.addTable(dto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/tables/{id}")
     public RestaurantTableDTO getTableById(@PathVariable Long id) {
         return tableService.getTableById(id);
     }
 
-    @GetMapping
+    @GetMapping("/tables")
     public List<RestaurantTableDTO> getAllTables() {
         return tableService.getAllTables();
     }

@@ -15,4 +15,5 @@
     <fullyQualifiedTypeName name="com.example.OrderService.Dto.MenuItemDTO"/>
     <fullyQualifiedTypeName name="com.example.OrderService.Dto.OrderDTO"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 </qualifiedTypeNameHistroy>
