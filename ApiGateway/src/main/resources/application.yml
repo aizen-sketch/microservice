@@ -19,7 +19,13 @@ spring:
             - Path=/menu/**
           filters:
             - StripPrefix=0
-            # - JwtAuthFilter  # Uncomment and define filter for JWT security
+
+        - id: menu-service-1
+          uri: lb://menu-service-1
+          predicates:
+            - Path=/menuitems/**
+          filters:
+            - StripPrefix=0
 
         - id: table-service
           uri: lb://table-service
@@ -27,7 +33,6 @@ spring:
             - Path=/tables/**
           filters:
             - StripPrefix=0
-            # - JwtAuthFilter  # Uncomment and define filter for JWT security
 
         - id: order-service
           uri: lb://order-service
@@ -35,7 +40,6 @@ spring:
             - Path=/orders/**
           filters:
             - StripPrefix=0
-            # - JwtAuthFilter  # Uncomment and define filter for JWT security
 
 eureka:
   client:

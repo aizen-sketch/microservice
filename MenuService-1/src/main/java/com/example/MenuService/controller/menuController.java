@@ -11,7 +11,7 @@ import com.example.MenuService.Dto.MenuItemDTO;
 import com.example.MenuService.repo.MenuRepository;
 
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("/menuitems")
 public class menuController {
 	
 	@Autowired
@@ -22,9 +22,9 @@ public class menuController {
                 .map(item -> new MenuItemDTO(item.getId(), item.getName(), item.getPrice()))
                 .collect(Collectors.toList());
     }
-//	@GetMapping
-////    public String getAll() {
-//		return "MenuService-1";
-//    }
+	@GetMapping("/menuHealth")
+    public String getHealth() {
+		return "MenuService-1";
+    }
 
 }
