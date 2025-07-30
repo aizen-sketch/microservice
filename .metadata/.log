@@ -5151,3 +5151,36 @@ java.lang.InterruptedException
 	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
 	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
 	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-28 19:34:55.284
+!MESSAGE 2 problems were encountered while building the effective model for org.apache.yetus:audience-annotations:jar:0.5.0 during dependency collection step for project (use -X to see details)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:34:56.924
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:34:56.926
+!MESSAGE Boot project ADDED: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:34:57.866
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:35:06.506
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:51:27.547
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-28 19:51:27.618
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-29 22:35:42.739
+!MESSAGE 2 problems were encountered while building the effective model for org.apache.yetus:audience-annotations:jar:0.5.0 during dependency collection step for project (use -X to see details)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-29 22:35:44.030
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-29 22:35:44.127
+!MESSAGE Classpath changed for project: AuthService
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-07-29 22:35:45.178
+!MESSAGE Classpath changed for project: AuthService
