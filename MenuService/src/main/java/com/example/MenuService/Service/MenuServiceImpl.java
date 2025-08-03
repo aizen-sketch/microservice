@@ -20,6 +20,7 @@ public class MenuServiceImpl implements MenuService {
     public MenuItemDTO addMenuItem(MenuItemDTO dto) {
         MenuItem item = new MenuItem(dto.getName(), dto.getPrice());
         MenuItem saved = repository.save(item);
+        //this is for push
         return new MenuItemDTO(saved.getId(), saved.getName(), saved.getPrice());
     }
 
