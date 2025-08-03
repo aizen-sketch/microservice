@@ -20,12 +20,17 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    @Bean
+	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf
+                                .ignoringRequestMatchers("/h2-console/**")
+                                .disable()
+                )
+                // adding headers.frameOptions().disable()  -->  makes h2 db fix the broken console.
+                .headers(headers -> headers.frameOptions().disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/auth/getToken", "/auth/register","auth/validate").permitAll()
+                        .requestMatchers("/auth/getToken", "/auth/register", "/auth/validate", "/h2-console/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
