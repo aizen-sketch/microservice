@@ -7247,3 +7247,9 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.springfra
 2025-08-03 22:34:38,842 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
 2025-08-03 22:34:39,005 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src/main/resources to target/classes
 2025-08-03 22:34:39,007 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/partha/Desktop/folder/projects/microservice/AuthService/src/test/resources
+2025-08-03 22:39:25,382 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@3f10dd29{STOPPING}[12.0.12,sto=0]
+2025-08-03 22:39:25,392 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@1bc2d7d2{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2025-08-05 12:40:07,065 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-08-05 12:46:21,994 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2025-08-05 12:46:22,006 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src/main/resources to target/classes
+2025-08-05 12:46:22,008 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/partha/Desktop/folder/projects/microservice/AuthService/src/test/resources

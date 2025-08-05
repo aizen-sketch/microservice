@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="HttpStatus"/>
+		<item value="HttpHeaders"/>
 		<item value="getMenuItemPriceFallback"/>
 		<item value="menuPriceFallback"/>
 	</list>
