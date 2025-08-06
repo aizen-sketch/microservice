@@ -22,19 +22,4 @@ public class ApiGatewayApplication {
 	public RestTemplate restTemplate() {
 	    return new RestTemplate();
 	}
-	@Bean
-	public WebFluxConfigurer corsConfigurer() {
-	    return new WebFluxConfigurer() {
-	        @Override
-	        public void addCorsMappings(CorsRegistry registry) {
-	            registry.addMapping("/**")
-	                    .allowedOrigins("*") 
-	                    .allowedMethods("*")
-	                    .allowedHeaders("*")
-	                    .allowCredentials(true);
-	        }
-	    };
-	}
-
-
 }

@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.AuthService.Dto.AuthRequest;
 import com.example.AuthService.Service.AuthService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -19,8 +22,15 @@ public class AuthController {
     }
 
     @PostMapping("/getToken")
-    public ResponseEntity<?> getToken(@RequestBody AuthRequest request) {
-        return ResponseEntity.ok(authService.getToken(request));
+    public ResponseEntity<?> getToken(@RequestBody AuthRequest request,HttpServletResponse response) {
+    	String token = authService.getToken(request);
+    	Cookie cookie = new Cookie("jwt", token);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false); // set to true in production (HTTPS only)
+        cookie.setPath("/");
+        cookie.setMaxAge(24 * 60 * 60); // 1 day
+        response.addCookie(cookie);
+        return ResponseEntity.ok(token);
     }
 
     @GetMapping("/validate")

@@ -2,6 +2,7 @@ package com.example.AuthService.Config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -31,13 +32,27 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
 
-        // Check for Bearer token
+        //  Try to extract token from Authorization header first
+        String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
+        }
+
+        //  If token not found in header, try to extract from cookie
+        if (token == null && request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("jwt".equals(cookie.getName())) {
+                    token = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
+        // 🟢 Extract username and validate token
+        if (token != null) {
             try {
                 username = jwtUtil.extractUsername(token);
             } catch (Exception e) {
@@ -45,7 +60,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // Set authentication
+        //  Set authentication in SecurityContext
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             var userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(token, userDetails)) {
@@ -63,4 +78,3 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
-
